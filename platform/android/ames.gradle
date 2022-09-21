@@ -1,0 +1,53 @@
+readGradleFile()
+otherLibrary()
+def readGradleFile() {
+    File amesProperties = new File(rootProject.getRootDir().getAbsolutePath() + '/ames.properties')
+    if (amesProperties.exists()) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(amesProperties))
+        if (props.containsKey("customeGradles")) {
+            String customeGradles = props.getProperty("customeGradles", null)
+            if (customeGradles !=null){
+                String[] gradles = customeGradles.split(",")
+                for(String gradle:gradles){
+                    if (checkGradleFile(gradle)){
+                        apply from: rootProject.getRootDir().getAbsolutePath() + '/' + gradle
+                    }
+                }
+            }
+        }
+    }
+}
+
+def otherLibrary(){
+    File amesProperties = new File(rootProject.getRootDir().getAbsolutePath() + '/ames.properties')
+    def moudles = rootProject.subprojects
+    if (amesProperties.exists()) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(amesProperties))
+        if (props.containsKey("customeLibraries")) {
+            String customeLibraries = props.getProperty("customeLibraries", null)
+            if (customeLibraries !=null){
+                String[] libraries = customeLibraries.split(",")
+                project(':app') { p ->
+                    p.afterEvaluate {
+                        moudles.each(){ moudle ->
+                            if (libraries.contains(moudle.name) &&moudle != rootProject && moudle.parent == rootProject){
+                                println p.name + '添加的依赖模块：' + moudle.name
+                                p.dependencies.add('implementation',project(':'+ moudle.name))
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+static def checkGradleFile(String gradle){
+    if (gradle == null || !gradle.endsWith(".gradle")){
+        return false;
+    }
+    return true;
+}

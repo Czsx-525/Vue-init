@@ -1,0 +1,26 @@
+{
+  "appId": "com.amarsoft.mobile.test1",
+  "appName": "test1",
+  "projectName": "test1",
+  "versionName": "1.0",
+  "versionCode": 1,
+  "statusBar": {
+    "immersive": false,
+    "backgroundColor": "#000000"
+  },
+  "screen": {
+    "screenshot": true,
+    "orientation": "portrait"
+  },
+  "webView": {
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": true,
+    "domStorageEnabled": true
+  },
+  "activity": {
+    "backPressed": "browserBack"
+  },
+  "platforms": [
+    "android"
+  ]
+}

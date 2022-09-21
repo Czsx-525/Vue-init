@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no, viewport-fit=cover" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.png">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Ames App" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <link rel="stylesheet" href="https://unpkg.com/pdfjs-dist@2.9.359/web/pdf_viewer.css">
+  <script src="https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.js"></script>
+  <script src="https://unpkg.com/pdfjs-dist@2.9.359/web/pdf_viewer.js"></script>
+ 
+  <!-- <script src="/amarsoft/amarbridge.js"></script> -->
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script src="/static/ames_pdf.js"></script>
+</body>
+
+</html>
